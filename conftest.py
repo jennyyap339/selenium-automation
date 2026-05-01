@@ -8,6 +8,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 def driver():
     # Setup Chrome options
     options = Options()
+    options.add_argument("--headless")           # no screen on server
+    options.add_argument("--no-sandbox")         # required for Linux
+    options.add_argument("--disable-dev-shm-usage") # required for Linux
     options.add_argument("--incognito")
     options.add_argument("--disable-save-password-bubble")
     options.add_argument("--disable-features=PasswordCheck")

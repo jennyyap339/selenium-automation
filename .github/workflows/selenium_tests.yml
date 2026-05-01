@@ -1,0 +1,39 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code # download your code
+        uses: actions/checkout@v3
+
+      - name: Set up Python # install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies # install selenium, pytest etc
+        run: |
+          python -m pip install --upgrade pip
+          pip install selenium webdriver-manager pytest pytest-html openpyxl
+
+      - name: Set up Chrome # install Chrome browser
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Run tests # run pytest
+        run: |
+          python -m pytest tests/ --html=reports/report.html
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v3
+        if: always() # run this step regardless of pass or fail
+        with:
+          name: test-report # save HTML report
+          path: reports/report.html
