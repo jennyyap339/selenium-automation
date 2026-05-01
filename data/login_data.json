@@ -1,0 +1,33 @@
+[
+    {
+        "username": "tomsmith",
+        "password": "SuperSecretPassword!",
+        "expected": "secure area",
+        "should_pass": true,
+        "skip": false
+    },
+
+    {
+        "username": "tomsmith",
+        "password": "WrongPassword!",
+        "expected": "invalid",
+        "should_pass": false,
+        "skip": false
+    },
+
+    {
+        "username": "wronguser",
+        "password": "wrongpass",
+        "expected": "invalid",
+        "should_pass": false,
+        "skip": false
+    },
+
+    {
+        "username": "tomsmith",
+        "password": "short",
+        "expected": "invalid",
+        "should_pass": false,
+        "skip": true
+    }
+]

@@ -1,0 +1,5 @@
+username,password,expected,should_pass,skip
+tomsmith,SuperSecretPassword!,secure area,True,False
+tomsmith,WrongPassword!,invalid,False,False
+wronguser,wrongpass,invalid,False,False
+tomsmith,short,invalid,False,True
