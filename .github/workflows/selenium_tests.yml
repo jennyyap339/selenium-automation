@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code # download your code
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Python # install Python
@@ -19,15 +19,15 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies # install selenium, pytest etc
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install selenium webdriver-manager pytest pytest-html openpyxl
+          pip install -r requirements.txt
 
-      - name: Set up Chrome # install Chrome browser
+      - name: Set up Chrome
         uses: browser-actions/setup-chrome@latest
 
-      - name: Run tests # run pytest
+      - name: Run tests
         run: |
           python -m pytest tests/ --html=reports/report.html
 
